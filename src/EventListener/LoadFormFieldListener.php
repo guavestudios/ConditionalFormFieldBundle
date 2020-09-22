@@ -30,9 +30,6 @@ class LoadFormFieldListener
             $widget->class = 'cffs-' . $widget->id;
         }
 
-        // JS magic
-        $GLOBALS['TL_JAVASCRIPT']['CONDITIONALFORMFIELD'] = 'bundles/guaveconditionalformfield/assets/conditionalformfields' . ($GLOBALS['TL_CONFIG']['debugMode'] ? '' : '.min') . '.js';
-
         return $widget;
     }
 }

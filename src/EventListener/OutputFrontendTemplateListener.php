@@ -18,7 +18,6 @@ class OutputFrontendTemplateListener
      */
     public function __invoke(string $buffer, string $template): string
     {
-        \var_dump($GLOBALS['CONDITIONALFORMFIELDS']);
         $arrForms = $GLOBALS['CONDITIONALFORMFIELDS'];
         foreach ($arrForms as $formId => $arrFields) {
             $arrTriggerFields = $this->generateTriggerFields($arrFields);
@@ -41,13 +40,7 @@ class OutputFrontendTemplateListener
      */
     private function generateJS(string $formId, array $arrTriggerFields, array $arrConditions, array $arrAllFields): string
     {
-        return "
-<script type=\"application/json\">
-    " . json_encode($arrTriggerFields). "
-</script>
-<script type=\"application/json\">
-    " . json_encode($arrConditions) . "
-</script>";
+        return "";
     }
 
     /**
