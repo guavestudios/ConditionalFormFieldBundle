@@ -13,7 +13,7 @@ use ReflectionClass;
  */
 class ValidateFormFieldListener
 {
-    protected static $fieldSets;
+    protected static array $fieldSets;
 
     /**
      * Validate only if needed.
@@ -35,7 +35,6 @@ class ValidateFormFieldListener
         foreach (static::$fieldSets[$form->id] as $fieldset) {
             foreach ($fieldset['fields'] as $fieldId) {
                 if ($fieldId === $widget->id && !$fieldset['condition']($postData)) {
-
                     $reflection = new ReflectionClass($widget);
                     $errors = $reflection->getProperty('arrErrors');
                     $errors->setAccessible(true);
@@ -61,7 +60,7 @@ class ValidateFormFieldListener
         static $data;
 
         if (!is_array($data)) {
-            $data = array();
+            $data = [];
             $fieldModels = FormFieldModel::findPublishedByPid($formId);
 
             if ($fieldModels !== null) {

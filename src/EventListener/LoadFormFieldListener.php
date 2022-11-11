@@ -8,7 +8,7 @@ use Contao\Widget;
 
 class LoadFormFieldListener
 {
-    protected static $fieldSets;
+    protected static array $fieldSets;
 
     /**
      * Apply conditional settings

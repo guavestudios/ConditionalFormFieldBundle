@@ -1,8 +1,11 @@
 <?php
 
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
+
+PaletteManipulator::create()
+    ->addField('isConditionalFormField', 'expert_legend', PaletteManipulator::POSITION_PREPEND)
+    ->applyToPalette('fieldsetStart', 'tl_form_field');
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['__selector__'][] = 'isConditionalFormField';
-$GLOBALS['TL_DCA']['tl_form_field']['palettes']['fieldsetfsStart'] = str_replace(';{expert_legend', ',isConditionalFormField;{expert_legend', $GLOBALS['TL_DCA']['tl_form_field']['palettes']['fieldsetfsStart']);
-$GLOBALS['TL_DCA']['tl_form_field']['palettes']['fieldsetStart'] = str_replace(';{expert_legend', ',isConditionalFormField;{expert_legend', $GLOBALS['TL_DCA']['tl_form_field']['palettes']['fieldsetStart']);
 $GLOBALS['TL_DCA']['tl_form_field']['subpalettes']['isConditionalFormField'] = 'conditionalFormFieldCondition';
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['isConditionalFormField'] = [
@@ -18,5 +21,5 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['conditionalFormFieldCondition'] =
     'exclude' => true,
     'inputType' => 'textarea',
     'eval' => ['mandatory' => true, 'decodeEntities' => true, 'style' => 'height:40px', 'tl_class' => 'clr'],
-    'sql' => "text NULL",
+    'sql' => 'text NULL',
 ];

@@ -24,7 +24,11 @@ class OutputFrontendTemplateListener
             $arrConditions = $this->generateConditions($arrFields);
             $arrAllFields = array_unique(array_merge($arrTriggerFields, array_keys($arrConditions)));
 
-            $buffer = str_replace('</body>', $this->generateJS($formId, $arrTriggerFields, $arrConditions, $arrAllFields) . '</body>', $buffer);
+            $buffer = str_replace(
+                '</body>',
+                $this->generateJS($formId, $arrTriggerFields, $arrConditions, $arrAllFields) . '</body>',
+                $buffer
+            );
         }
 
         return $buffer;
@@ -32,15 +36,20 @@ class OutputFrontendTemplateListener
 
     /**
      * Generates the JS per form
+     *
      * @param string $formId
      * @param array $arrTriggerFields
      * @param array $arrConditions
      * @param array $arrAllFields
      * @return string
      */
-    private function generateJS(string $formId, array $arrTriggerFields, array $arrConditions, array $arrAllFields): string
-    {
-        return "";
+    private function generateJS(
+        string $formId,
+        array $arrTriggerFields,
+        array $arrConditions,
+        array $arrAllFields
+    ): string {
+        return '';
     }
 
     /**
@@ -49,7 +58,7 @@ class OutputFrontendTemplateListener
      */
     private function generateConditions(array $arrFields): array
     {
-        $arrConditions = array();
+        $arrConditions = [];
         foreach ($arrFields as $name => $strCondition) {
             $arrConditions[$name] = $this->generateCondition($strCondition, 'js');
         }
@@ -65,7 +74,7 @@ class OutputFrontendTemplateListener
     private function generateCondition(string $strCondition, string $strLanguage): string
     {
         if ($strLanguage === 'js') {
-            $strCondition = preg_replace("/\\$([A-Za-z0-9_]+)/u", "values.$1", $strCondition);
+            $strCondition = preg_replace("/\\$([A-Za-z0-9_]+)/u", 'values.$1', $strCondition);
         } else {
             $strCondition = str_replace('in_array', '@in_array', $strCondition);
             $strCondition = preg_replace("/\\$([A-Za-z0-9_]+)/u", '$arrPost[\'$1\']', $strCondition);
@@ -80,7 +89,7 @@ class OutputFrontendTemplateListener
      */
     private function generateTriggerFields(array $arrFields): array
     {
-        $arrTriggerFields = array();
+        $arrTriggerFields = [];
         foreach ($arrFields as $strCondition) {
             if (preg_match_all('/\\$([A-Za-z0-9_]+)/u', $strCondition, $arrMatches)) {
                 if ($arrMatches[1]) {

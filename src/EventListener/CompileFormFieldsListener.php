@@ -11,7 +11,7 @@ use Contao\FormFieldModel;
  */
 class CompileFormFieldsListener
 {
-    protected static $fieldSets;
+    protected static array $fieldSets;
 
     /**
      * @param FormFieldModel[] $fields
@@ -19,15 +19,14 @@ class CompileFormFieldsListener
      * @param Form $form
      * @return array
      */
-    public function __invoke(array $fields, string $formId, Form $form)
+    public function __invoke(array $fields, string $formId, Form $form): array
     {
         $formSubmitId = $form->id;
         $fieldSet = null;
 
-        static::$fieldSets[$formSubmitId] = array();
+        static::$fieldSets[$formSubmitId] = [];
 
         foreach ($fields as $field) {
-
             // Start the fieldset
             if (
                 (($field->type === 'fieldset' && $field->fsType === 'fsStart') ||
@@ -37,12 +36,12 @@ class CompileFormFieldsListener
                 $fieldSet = $field->id;
                 $condition = $this->generateCondition($field->conditionalFormFieldCondition, 'php');
 
-                static::$fieldSets[$formSubmitId][$fieldSet] = array(
+                static::$fieldSets[$formSubmitId][$fieldSet] = [
                     'condition' => function ($arrPost) use ($condition) {
                         return eval($condition);
                     },
-                    'fields' => array(),
-                );
+                    'fields' => [],
+                ];
 
                 // JS
                 $GLOBALS['CONDITIONALFORMFIELDS'][$formId][$field->id] = $field->conditionalFormFieldCondition;
@@ -77,7 +76,7 @@ class CompileFormFieldsListener
     private function generateCondition(string $strCondition, string $strLanguage): string
     {
         if ($strLanguage === 'js') {
-            $strCondition = preg_replace("/\\$([A-Za-z0-9_]+)/u", "values.$1", $strCondition);
+            $strCondition = preg_replace("/\\$([A-Za-z0-9_]+)/u", 'values.$1', $strCondition);
         } else {
             $strCondition = str_replace('in_array', '@in_array', $strCondition);
             $strCondition = preg_replace("/\\$([A-Za-z0-9_]+)/u", '$arrPost[\'$1\']', $strCondition);
