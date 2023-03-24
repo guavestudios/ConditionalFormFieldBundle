@@ -6,9 +6,6 @@ use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Form;
 use Contao\FormFieldModel;
 
-/**
- * @Hook("compileFormFields")
- */
 class CompileFormFieldsListener
 {
     protected static array $fieldSets;

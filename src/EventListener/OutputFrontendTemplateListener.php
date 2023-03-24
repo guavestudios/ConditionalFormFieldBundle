@@ -4,9 +4,6 @@ namespace Guave\ConditionalFormFieldBundle\EventListener;
 
 use Contao\CoreBundle\ServiceAnnotation\Hook;
 
-/**
- * @Hook("outputFrontendTemplate")
- */
 class OutputFrontendTemplateListener
 {
     /**
