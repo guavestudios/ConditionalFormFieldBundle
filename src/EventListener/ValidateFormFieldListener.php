@@ -6,6 +6,7 @@ use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Form;
 use Contao\FormFieldModel;
 use Contao\Widget;
+use Input;
 use ReflectionClass;
 
 /**
@@ -65,7 +66,7 @@ class ValidateFormFieldListener
 
             if ($fieldModels !== null) {
                 foreach ($fieldModels as $fieldModel) {
-                    $data[$fieldModel->name] = \Input::post($fieldModel->name);
+                    $data[$fieldModel->name] = Input::post($fieldModel->name);
                 }
             }
         }

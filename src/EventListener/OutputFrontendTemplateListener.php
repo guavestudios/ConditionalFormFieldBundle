@@ -18,7 +18,7 @@ class OutputFrontendTemplateListener
      */
     public function __invoke(string $buffer, string $template): string
     {
-        $arrForms = $GLOBALS['CONDITIONALFORMFIELDS'];
+        $arrForms = $GLOBALS['CONDITIONALFORMFIELDS'] ?? [];
         foreach ($arrForms as $formId => $arrFields) {
             $arrTriggerFields = $this->generateTriggerFields($arrFields);
             $arrConditions = $this->generateConditions($arrFields);

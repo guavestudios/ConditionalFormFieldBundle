@@ -11,7 +11,7 @@ use Guave\ConditionalFormFieldBundle\GuaveConditionalFormFieldBundle;
 class Plugin implements BundlePluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getBundles(ParserInterface $parser): array
     {
