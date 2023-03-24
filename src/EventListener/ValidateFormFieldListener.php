@@ -9,9 +9,6 @@ use Contao\Widget;
 use Input;
 use ReflectionClass;
 
-/**
- * @Hook("validateFormField")
- */
 class ValidateFormFieldListener
 {
     protected static array $fieldSets;
