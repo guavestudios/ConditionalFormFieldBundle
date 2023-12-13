@@ -1,6 +1,6 @@
 {
 	"name": "guave/conditionalformfield-bundle",
-	"description": "Conditional Form Field for Contao 4.9+",
+	"description": "Conditional Form Field for Contao 4.13+",
 	"type": "contao-bundle",
 	"license": "ISC",
 	"authors": [
