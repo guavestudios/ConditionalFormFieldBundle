@@ -2,7 +2,6 @@
 
 namespace Guave\ConditionalFormFieldBundle\EventListener;
 
-use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Form;
 use Contao\FormFieldModel;
 use Contao\Widget;
@@ -33,8 +32,7 @@ class ValidateFormFieldListener
         foreach (static::$fieldSets[$form->id] as $fieldset) {
             foreach ($fieldset['fields'] as $fieldId) {
                 if ($fieldId === $widget->id && !$fieldset['condition']($postData)) {
-                    $reflection = new ReflectionClass($widget);
-                    $errors = $reflection->getProperty('arrErrors');
+                    $errors = (new ReflectionClass($widget))->getProperty('arrErrors');
                     $errors->setAccessible(true);
                     $errors->setValue($widget, []);
 

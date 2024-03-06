@@ -2,8 +2,6 @@
 
 namespace Guave\ConditionalFormFieldBundle\EventListener;
 
-use Contao\CoreBundle\ServiceAnnotation\Hook;
-
 class OutputFrontendTemplateListener
 {
     /**
@@ -15,8 +13,7 @@ class OutputFrontendTemplateListener
      */
     public function __invoke(string $buffer, string $template): string
     {
-        $arrForms = $GLOBALS['CONDITIONALFORMFIELDS'] ?? [];
-        foreach ($arrForms as $formId => $arrFields) {
+        foreach ($GLOBALS['CONDITIONALFORMFIELDS'] ?? [] as $formId => $arrFields) {
             $arrTriggerFields = $this->generateTriggerFields($arrFields);
             $arrConditions = $this->generateConditions($arrFields);
             $arrAllFields = array_unique(array_merge($arrTriggerFields, array_keys($arrConditions)));
@@ -42,10 +39,11 @@ class OutputFrontendTemplateListener
      */
     private function generateJS(
         string $formId,
-        array $arrTriggerFields,
-        array $arrConditions,
-        array $arrAllFields
-    ): string {
+        array  $arrTriggerFields,
+        array  $arrConditions,
+        array  $arrAllFields
+    ): string
+    {
         return '';
     }
 
