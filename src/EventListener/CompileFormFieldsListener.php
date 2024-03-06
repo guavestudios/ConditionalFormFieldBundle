@@ -2,7 +2,6 @@
 
 namespace Guave\ConditionalFormFieldBundle\EventListener;
 
-use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Form;
 use Contao\FormFieldModel;
 
