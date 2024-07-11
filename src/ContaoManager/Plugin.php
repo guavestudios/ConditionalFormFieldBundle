@@ -10,9 +10,6 @@ use Guave\ConditionalFormFieldBundle\GuaveConditionalFormFieldBundle;
 
 class Plugin implements BundlePluginInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getBundles(ParserInterface $parser): array
     {
         return [
