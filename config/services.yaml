@@ -2,3 +2,11 @@ services:
   _defaults:
     autoconfigure: true
     autowire: true
+
+  Guave\ConditionalFormFieldBundle\:
+    resource: ../src
+    exclude: ../src/{ContaoManager,DependencyInjection}
+
+  Guave\ConditionalFormFieldBundle\EventListener\:
+    resource: ../src/EventListener
+    public: true
