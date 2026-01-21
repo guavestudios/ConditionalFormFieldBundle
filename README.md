@@ -8,8 +8,8 @@ This contao module allows you to set conditional fields in a for to hide or show
 
 ## Requirements
 
-- Contao 4.13+
-- PHP 7.4 or 8.0+
+- Contao 5.0+
+- PHP 8.1+
 
 ### Install
 
